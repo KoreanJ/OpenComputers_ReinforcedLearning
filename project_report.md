@@ -22,6 +22,6 @@ Note: MC = Minecraft, RL = Real Life
     > Visual Studio Code (RL) - where programs are developed and then copied into a text file in-game
     > Text Editor (MC) - used in the game to develop solutions
 
-!['Description']('/visuals/images/computer-image.png')
+![Sample computer output](/visuals/images/computer-image.png)
 
 As seen in the above list, all of the programs for this project will be programmed in Lua. Two of the programs used were taken directly from GitHub and are primarily meant to ease the process of debugging the drone and uploading new code. Please see the <i><b>REFERENCES</i></b> section at the bottom of the page to review these functions.
