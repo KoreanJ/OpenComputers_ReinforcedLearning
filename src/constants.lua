@@ -1,3 +1,7 @@
+-- constants.lua
+-- All of the constants used in this project
+
+-- Module to be returned
 local M = {}
 M.ADDR = "aae550e7-28b1-4e87-8c63-79b36110b4f2"
 M.PORT = 1000
@@ -113,128 +117,5 @@ M.MASTER_PROBS = {
         }
     }
 }
-M.EST_PROBS = {
-    ["acacia"] = {
-        ['up'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['down'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['left'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['right'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        }
-    },
-    ["nether"] = {
-        ['up'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['down'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['left'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['right'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        }
-    },
-    ["ice"] = {
-        ['up'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['down'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['left'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['right'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        }
-    },
-    ["diamond"] = {
-        ['up'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['down'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['left'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        },
-        ['right'] = {
-            ['up'] = 0.0,
-            ['down'] = 0.0,
-            ['left'] = 0.0,
-            ['right'] = 0.0
-        }
-    }
-}
-M.EXPLORED = {
-    ['nether_up'] = false,
-    ['nether_down'] = false,
-    ['nether_left'] = false,
-    ['nether_right'] = false,
-    ['acacia_up'] = false,
-    ['acacia_down'] = false,
-    ['acacia_left'] = false,
-    ['acacia_right'] = false,
-    ['ice_up'] = false,
-    ['ice_down'] = false,
-    ['ice_left'] = false,
-    ['ice_right'] = false,
-    ['diamond_up'] = false,
-    ['diamond_down'] = false,
-    ['diamond_left'] = false,
-    ['diamond_right'] = false
-}
+
 return M
