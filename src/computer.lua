@@ -16,6 +16,7 @@ PORT = 1000
 modem.open(PORT)
 received = false
 
+
 -- Establish connection with computer
 setup_complete = false
 print('Establishing connection with robot...')
@@ -30,11 +31,11 @@ while not setup_complete do
     end
 end
 
--- Make robot move back 2 blocks
-send_msg("back 2")
+-- -- Make robot move back 2 blocks
+-- send_msg("back 2")
 
--- Terminate robot at end of program
-os.sleep(5)
-send_msg("TERMINATE")
+-- -- Terminate robot at end of program
+-- os.sleep(5)
+-- send_msg("TERMINATE")
 
 
