@@ -1,7 +1,7 @@
 drone = component.proxy(component.list("drone")())
 modem = component.proxy(component.list("modem")())
 
-ADDR = "16f260b2-b42a-4cd7-9cfe-e37e67524c55"
+ADDR = "d7d1b55b-6ae6-45aa-8c30-b87416ba402b"
 
 modem.open(1370)
 
@@ -38,3 +38,5 @@ while true do
     end
   end
 end
+
+print("Drone is ready to go!")
