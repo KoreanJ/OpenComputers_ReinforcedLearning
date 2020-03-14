@@ -22,25 +22,9 @@ In reinforced learning our goal is to compute the optimal policy to reach some g
 ## Map Setup
 I used 4 different Minecraft blocks: acacia wood planks, a diamond block, nether quartz ore, and an ice block. Each block has a different reward and transition probability associated with it such that certain blocks are more enticiing to land on than others. The diamond block is our "goal" block, with an associated reward of 1. Each nether quartz ore is our negative block and has a value of -1. This way our robot can learn to avoid those blocks in order to maximize reward. Here are the blocks and their names:
 
-|<img alt="Nether Quartz" title="Nether Quartz" src="visuals/images/nether_quartz.png" width="100" height="100"/>|
-|:--:|
-|*Nether Quartz*|
-<br>
-
-|<img src="visuals/images/diamond_block.png" width="100" height="100"/>|
-|:--:|
-|*Diamond Block*|
-<br>
-
-|<img src="visuals/images/acacia_planks.png" width="100" height="100"/>|
-|:--:|
-|*Acacia Planks*|
-<br>
-
-|<img src="visuals/images/ice_block.png" width="100" height="100"/>|
-|:--:|
-|*Ice Block*|
-<br>
+| Nether Quartz | Diamond Block | Ice Block | Acacia Planks |
+| :--: | :--: | :--: | :--: |
+| <img alt="Nether Quartz" title="Nether Quartz" src="visuals/images/nether_quartz.png" width="100" height="100"/> | <img src="visuals/images/diamond_block.png" width="100" height="100"/> | <img src="visuals/images/ice_block.png" width="100" height="100"/> | <img src="visuals/images/acacia_planks.png" width="100" height="100"/> |
 
 |<img src="visuals/images/game_map.png" width="500" height="300"/>|
 |:--:|
