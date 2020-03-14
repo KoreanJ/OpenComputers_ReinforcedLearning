@@ -178,14 +178,14 @@ M.TRAN_PROBS = {
 }
 
 -- Initialize probs as 0 for robot to estimate
-for r=1,M.ROWS
+for r=1,M.NUM_STATES
 do
     M.TRAN_PROBS['up'][r] = {}
     M.TRAN_PROBS['down'][r] = {}
     M.TRAN_PROBS['left'][r] = {}
     M.TRAN_PROBS['right'][r] = {}
 
-    for c=1,M.COLS
+    for c=1,M.NUM_STATES
     do
         M.TRAN_PROBS['up'][r][c] = 0.0
         M.TRAN_PROBS['down'][r][c] = 0.0

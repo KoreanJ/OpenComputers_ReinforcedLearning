@@ -11,18 +11,6 @@ F = require("functions")
 -- Open modem port to send/receive messages
 modem.open(constants.PORT)
 
--- Establish connection with computer
-setup_complete = true
-while not setup_complete do
-    modem.send(constants.ADDR, constants.PORT, "Houston do you copy?")
-    local _, _, from, port, _, message = event.pull(5, "modem_message")
-    if port == constants.PORT and tostring(message) == "Loud and clear" 
-    then
-        print("Done. Connection successfully established!")
-        setup_complete = true
-    end
-end
-
 -- Variables to find/update
 est_probs = {
     ["acacia"] = {
@@ -176,33 +164,49 @@ do
             if mv == 'up'
             then           
                 -- If move is even possible, record it in tran prob
-                if (pos['r']+1) < constants.ROWS
+                if (pos['c'] % 2 == 0) and (pos['r']+1) < constants.ROWS
                 then
                     s_prime = constants.POS_STATES[pos['r']+1][pos['c']]
+                    tran_probs[m][s][s_prime] = probs['up']
+                elseif (pos['c'] % 2) ~= 0 and (pos['r']-1) >= 0
+                then
+                    s_prime = constants.POS_STATES[pos['r']-1][pos['c']]
                     tran_probs[m][s][s_prime] = probs['up']
                 end
             elseif mv == 'down'
             then
                 -- If move is even possible, record it in tran prob
-                if (pos['r']-1) >= 0
+                if (pos['c'] % 2 == 0) and ((pos['r']-1) >= 0)
                 then
                     s_prime = constants.POS_STATES[pos['r']-1][pos['c']]
+                    tran_probs[m][s][s_prime] = probs['down']
+                elseif (pos['c'] % 2 ~= 0) and (pos['r']+1) < constants.ROWS
+                then
+                    s_prime = constants.POS_STATES[pos['r']+1][pos['c']]
                     tran_probs[m][s][s_prime] = probs['down']
                 end
             elseif mv == 'left'
             then
                 -- If move is even possible, record it in tran prob
-                if (pos['c']+1) < constants.COLS
+                if (pos['c'] % 2 == 0) and (pos['c']+1) < constants.COLS
                 then
                     s_prime = constants.POS_STATES[pos['r']][pos['c']+1]
+                    tran_probs[m][s][s_prime] = probs['left']
+                elseif (pos['c'] % 2 ~= 0) and ((pos['c']-1) >= 0)
+                then
+                    s_prime = constants.POS_STATES[pos['r']][pos['c']-1]
                     tran_probs[m][s][s_prime] = probs['left']
                 end
             elseif mv == 'right'
             then
                 -- If move is even possible, record it in tran prob
-                if (pos['c']-1) >= 0
+                if (pos['c'] % 2 == 0) and (pos['c']-1) >= 0
                 then
                     s_prime = constants.POS_STATES[pos['r']][pos['c']-1]
+                    tran_probs[m][s][s_prime] = probs['right']
+                elseif (pos['c'] % 2 ~= 0) and (pos['c']+1) < constants.COLS
+                then
+                    s_prime = constants.POS_STATES[pos['r']][pos['c']+1]
                     tran_probs[m][s][s_prime] = probs['right']
                 end
             else
@@ -229,7 +233,13 @@ do
         pos['state'] = constants.POS_STATES[pos['r']][pos['c']]
     else
         robot.forward()
-        pos['r'] = pos['r'] + 1
+        if pos['c'] % 2 == 0
+        then
+            pos['r'] = pos['r'] + 1
+        elseif pos['c'] % 2 ~= 0
+        then
+            pos['r'] = pos['r'] - 1
+        end
         pos['state'] = constants.POS_STATES[pos['r']][pos['c']]
     end
 
