@@ -141,10 +141,10 @@ function M.value_iteration()
 
     end
 
+    os.sleep(2)
+    go_home()
     return best_moves
 end
 
--- Send robot back to starting position
-go_home()
 
 return M

@@ -233,9 +233,11 @@ os.sleep(2)
 best_moves = B.value_iteration()
 
 -- Print best computed states
--- for state,mv in pairs(best_moves)
--- do
---     print('[' .. tostring(state) .. '] = ' .. mv)
--- end
+print('\n=== Final Results ===')
+for state,mv in pairs(best_moves)
+do
+    print('[' .. tostring(state) .. '] = ' .. mv)
+    os.sleep(1)
+end
 
 print('<END OF PROGRAM>')
