@@ -117,5 +117,81 @@ M.MASTER_PROBS = {
         }
     }
 }
+M.NUM_STATES = 20
+M.MAP = {
+    [1] = 'acacia',
+    [2] = 'nether',
+    [3] = 'ice',
+    [4] = 'acacia',
+    [5] = 'acacia',
+    [6] = 'acacia',
+    [7] = 'acacia',
+    [8] = 'acacia',
+    [9] = 'ice',
+    [10] = 'acacia',
+    [11] = 'nether',
+    [12] = 'ice',
+    [13] = 'acacia',
+    [14] = 'acacia',
+    [15] = 'nether',
+    [16] = 'acacia',
+    [17] = 'acacia',
+    [18] = 'diamond',
+    [19] = 'acacia',
+    [20] = 'diamond'
+}
+M.POS_STATES = {
+    [0] = {
+        [0] = 1,
+        [1] = 8,
+        [2] = 9,
+        [3] = 16,
+        [4] = 17
+    },
+    [1] = {
+        [0] = 2,
+        [1] = 7,
+        [2] = 10,
+        [3] = 15,
+        [4] = 18
+    },
+    [2] = {
+        [0] = 3,
+        [1] = 6,
+        [2] = 11,
+        [3] = 14,
+        [4] = 19
+    },
+    [3] = {
+        [0] = 4, 
+        [1] = 5,
+        [2] = 12,
+        [3] = 13,
+        [4] = 20
+    }
+}
+M.TRAN_PROBS = {
+    ['up'] = {},
+    ['down'] = {},
+    ['left'] = {},
+    ['right'] = {}
+}
+
+-- Initialize probs as 0 for robot to estimate
+for r=1,M.ROWS
+do
+    M.TRAN_PROBS['up'][r] = {}
+    M.TRAN_PROBS['down'][r] = {}
+    M.TRAN_PROBS['left'][r] = {}
+    M.TRAN_PROBS['right'][r] = {}
+
+    for c=1,M.COLS
+    do
+        M.TRAN_PROBS['up'][r][c] = 0.0
+        M.TRAN_PROBS['down'][r][c] = 0.0
+        M.TRAN_PROBS['left'][r][c] = 0.0
+        M.TRAN_PROBS['right'][r][c] = 0.0
+    end
+end
 
 return M

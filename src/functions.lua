@@ -26,6 +26,7 @@ function M.get_current_block(indeces)
     return 'No block found'
 end
 
+
 -- Find the current state on the game board
 function M.get_state(x, y)
     return (y*constants.COLS)+(constants.ROWS+1)
@@ -44,6 +45,7 @@ function M.random_move()
             then
                 robot.forward()
                 did_move = true
+                move = 'up'
             end
         elseif i == 2   -- down
         then
@@ -53,6 +55,7 @@ function M.random_move()
                 robot.forward()
                 robot.turnAround()
                 did_move = true
+                move = 'down'
             end
         elseif i == 3   -- left
         then
@@ -62,6 +65,7 @@ function M.random_move()
                 robot.forward()
                 robot.turnRight()
                 did_move = true
+                move = 'left'
             end
         elseif i == 4   -- right
         then
@@ -71,9 +75,12 @@ function M.random_move()
                 robot.forward()
                 robot.turnLeft()
                 did_move = true
+                move = 'right'
             end
         end
     end
+
+    return move
 end
 
 -- Given known probabilities, compute the actual move (isn't always necessarily the correct move)
@@ -121,6 +128,52 @@ function M.estimate_probability(block, move)
     end
     
     return cnts
+end
+
+-- Update the robot's current position
+function M.update_pos(move, pos)
+    if move == 'up'
+    then
+        pos['r'] = pos['r'] - 1
+    elseif move == 'down'
+    then
+        pos['r'] = pos['r'] + 1
+    elseif move == 'left'
+    then
+        pos['c'] = pos['c'] - 1
+    else
+        pos['c'] = pos['c'] + 1
+    end
+
+    -- Update current state
+    pos['state'] = M.get_state(pos['r'], pos['c'])
+end
+
+-- Find all of the directions the robot can move in
+function M.get_moves()
+    moves = {}
+    if not robot.detect()
+    then
+        moves[0] = 'up'
+    end
+    robot.turnLeft()
+    if not robot.detect()
+    then
+        moves[1] = 'left'
+    end
+    robot.turnLeft()
+    if not robot.detect()
+    then
+        moves[2] = 'down'
+    end
+    robot.turnLeft()
+    if not robot.detect()
+    then
+        moves[3] = 'right'
+    end
+    robot.turnLeft()
+
+    return moves
 end
 
 return M
