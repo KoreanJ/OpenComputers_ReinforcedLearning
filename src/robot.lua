@@ -7,6 +7,7 @@ modem = component.modem
 -- Custom modules
 constants = require("constants")
 F = require("functions")
+B = require("bellman")
 
 -- Open modem port to send/receive messages
 modem.open(constants.PORT)
@@ -118,26 +119,8 @@ est_probs = {
         }
     }
 }
-explored_blocks = {
-    ['nether_up'] = false,
-    ['nether_down'] = false,
-    ['nether_left'] = false,
-    ['nether_right'] = false,
-    ['acacia_up'] = false,
-    ['acacia_down'] = false,
-    ['acacia_left'] = false,
-    ['acacia_right'] = false,
-    ['ice_up'] = false,
-    ['ice_down'] = false,
-    ['ice_left'] = false,
-    ['ice_right'] = false,
-    ['diamond_up'] = false,
-    ['diamond_down'] = false,
-    ['diamond_left'] = false,
-    ['diamond_right'] = false
-}
 
--- Explore all blocks and their possible moves
+-- Estimated transition probabilities empirically
 pos = {['r'] = 0, ['c'] = 0, ['state'] = 1}
 tran_probs = constants.TRAN_PROBS
 for i=1,constants.NUM_STATES
@@ -243,4 +226,13 @@ do
         pos['state'] = constants.POS_STATES[pos['r']][pos['c']]
     end
 
+end
+
+-- Run value iteration to compute best policy
+best_moves = B.value_iteration(constants.VALUES, constants.REWARDS, constants.CONV_ITERATIONS, tran_probs)
+
+-- Print best computed states
+for state,mv in pairs(best_moves)
+do
+    print('[' .. tostring(state) .. '] = ' .. mv)
 end
