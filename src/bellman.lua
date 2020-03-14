@@ -63,12 +63,17 @@ local function go_home()
     robot.back()
 end
 
-function M.value_iteration(values, rewards, num_iterations, tran_probs)
+function M.value_iteration()
+    go_home()
+
     -- Variables
     pos = {['r'] = 0, ['c'] = 0, ['state'] = 1}
     best_moves = {}
+    values = constants.VALUES
+    rewards = constants.REWARDS
+    tran_probs = constants.TRAN_PROBS
 
-    for i=1,constants.NUM_STATES
+    for state=1,constants.NUM_STATES
     do
         -- get possible actions
         valid_moves = F.get_moves()
@@ -78,17 +83,21 @@ function M.value_iteration(values, rewards, num_iterations, tran_probs)
         -- Loop through each intended move
         for i,mv in pairs(valid_moves)
         do
+            print('Intended Move: ' .. mv)
 
             -- Get expected value
             exp_val = 0
             for i1,mv1 in pairs(valid_moves)
             do
                 s_p = get_s_prime(pos, state, mv1)
-                exp_val = exp_val + (values[s_p]*tran_probs[mv][i][s_p])
+                print('s = ' .. tostring(state))
+                print('s_prime = ' .. tostring(s_p))
+                print(tran_probs[mv][state][s_p])
+                exp_val = exp_val + (values[s_p]*tran_probs[mv][state][s_p])
             end
 
             -- Compute value for this intended move
-            value = rewards[i] + (constants.GAMMA*exp_val)
+            value = rewards[state] + (constants.GAMMA*exp_val)
 
             -- See if this intended move maximizes the total value
             if value > max_value
@@ -99,8 +108,8 @@ function M.value_iteration(values, rewards, num_iterations, tran_probs)
         end
 
         -- Using maximum value/move, update current state
-        values[i] = max_value
-        best_moves[i] = max_move
+        values[state] = max_value
+        best_moves[state] = max_move
 
         -- Move to next state and update position
         blocked = robot.detect()

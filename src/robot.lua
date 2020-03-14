@@ -138,7 +138,7 @@ do
         key = curr_block .. '_' .. m
 
         -- Get estimated probability for this move
-        print('Finding prob for: ' .. tostring(key))
+        --print('Finding prob for: ' .. tostring(key))
         probs = F.estimate_probability(curr_block, m)
         
         -- Update transition probabilities based on estimated probabilities
@@ -229,10 +229,13 @@ do
 end
 
 -- Run value iteration to compute best policy
-best_moves = B.value_iteration(constants.VALUES, constants.REWARDS, constants.CONV_ITERATIONS, tran_probs)
+os.sleep(2)
+best_moves = B.value_iteration()
 
 -- Print best computed states
-for state,mv in pairs(best_moves)
-do
-    print('[' .. tostring(state) .. '] = ' .. mv)
-end
+-- for state,mv in pairs(best_moves)
+-- do
+--     print('[' .. tostring(state) .. '] = ' .. mv)
+-- end
+
+print('<END OF PROGRAM>')
