@@ -7,7 +7,7 @@ M.ADDR = "aae550e7-28b1-4e87-8c63-79b36110b4f2"
 M.PORT = 1000
 M.COLS = 5
 M.ROWS = 4
-M.NUM_ITERATIONS = 20
+M.NUM_ITERATIONS = 100.0
 M.START_POS = {0, 3}
 M.INDECES = {["nether"] = 1, ["acacia"] = 2, ["ice"] = 3, ["diamond"] = 4}
 M.MOVES = {'up', 'down', 'left', 'right'}

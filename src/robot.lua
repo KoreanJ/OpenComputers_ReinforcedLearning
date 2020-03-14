@@ -149,8 +149,8 @@ explored_blocks = {
     ['diamond_right'] = false
 }
 
--- While not explored all types of blocks, keep exploring
-for i=1,15
+-- Explore all blocks and their possible moves
+for i=1,5
 do
     found_new = false
     curr_block = F.get_current_block(constants.INDECES)
@@ -162,7 +162,7 @@ do
         if not explored_blocks[key]
         then
             found_new = true
-            print('Estimate new probability: ' .. tostring(key))
+            print('Finding prob for: ' .. tostring(key))
             explored_blocks[key] = true
             probs = F.estimate_probability(curr_block, m)
         end
@@ -177,3 +177,22 @@ do
     -- Make random move to next block
     F.random_move()
 end
+
+print(est_probs['acacia']['up']['up'])
+print(est_probs['acacia']['up']['down'])
+print(est_probs['acacia']['up']['left'])
+print(est_probs['acacia']['up']['right'])
+
+-- -- Print out estimated probs
+-- for block,_ in pairs(est_probs)
+-- do
+--     --print(block)
+--     for m,_ in pairs(est_probs[block])
+--     do
+--         --print("\t" .. m)
+--         for m2,p in pairs(est_probs[block][m])
+--         do
+--             print("\t\t" .. m2 .. "->" .. tostring(p))
+--         end
+--     end
+-- end

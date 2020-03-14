@@ -42,7 +42,6 @@ function M.random_move()
         then
             if not blocked
             then
-                print('No block in front. Moving forward.')
                 robot.forward()
                 did_move = true
             end
@@ -51,7 +50,6 @@ function M.random_move()
             robot.turnAround()
             if not blocked
             then
-                print('No block in front. Moving forward')
                 robot.forward()
                 robot.turnAround()
                 did_move = true
@@ -61,7 +59,6 @@ function M.random_move()
             robot.turnLeft()
             if not blocked
             then
-                print('No block in front. Moving forward')
                 robot.forward()
                 robot.turnRight()
                 did_move = true
@@ -71,7 +68,6 @@ function M.random_move()
             robot.turnRight()
             if not blocked
             then
-                print('No block in front. Moving forward')
                 robot.forward()
                 robot.turnLeft()
                 did_move = true
@@ -84,19 +80,21 @@ end
 local function get_move(block, move)
     r = math.random(1,100)
     probs = constants.MASTER_PROBS[block][move]
-    if r <= (100*probs['up'])
+    if probs['up'] ~= 0.0 and r <= (100*probs['up'])
     then
         return 'up'
-    elseif r > (100*probs['up']) and r <= (100*(probs['up'] + probs['down']))
+    elseif probs['down'] ~= 0.0 and r > (100*probs['up']) and r <= (100*(probs['up'] + probs['down']))
     then
         return 'down'
-    elseif r > (100*(probs['up'] + probs['down'])) and r <= (100*(probs['up'] + probs['down'] + probs['left']))
+    elseif probs['left'] ~= 0.0 and r > (100*(probs['up'] + probs['down'])) and r <= (100*(probs['up'] + probs['down'] + probs['left']))
     then
         return 'left'
-    else
+    elseif probs['right'] ~= 0.0 and r > (100*(probs['up'] + probs['down'] + probs['left'])) and r <= 100
+    then
         return 'right'
+    else
+        return 'Error'
     end
-    return 'Error'
 end
 
 
@@ -123,5 +121,6 @@ function M.estimate_probability(block, move)
     end
     
     return cnts
+end
 
 return M
