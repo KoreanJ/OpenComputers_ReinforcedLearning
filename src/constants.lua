@@ -1,7 +1,7 @@
 -- constants.lua
 -- All of the constants used in this project
 
--- Module to be returned
+-- Module to be returned 
 local M = {}
 M.ADDR = "aae550e7-28b1-4e87-8c63-79b36110b4f2"
 M.PORT = 1000
