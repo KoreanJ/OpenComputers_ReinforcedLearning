@@ -44,7 +44,7 @@ To overcome this challenge, the robot's main purpose in this simulation will be 
     }
 } <br>
 
-Once the robot has determined its surroundings, it will apply the standard algorithm to compute the most optimal policy. 
+Once the robot has determined its surroundings, it will apply the standard algorithm to compute the most optimal policy.  
 
 ## Getting Started
 The details of getting this setup in Minecraft can be provided upon request, but I chose to exclude most of them for your own sanity. However, if you wish to know more about how I was able to set all of this up in a Minecraft mod feel free to ask. <br>
